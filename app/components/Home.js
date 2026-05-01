@@ -42,27 +42,18 @@ const technologies = [
   "Cloudflare",
 ];
 
-export default function NeluweHome({userCountry, userIp}) {
+export default function NeluweHome({ userCountry }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [price, setPrice] = useState({});
   const slotsLeft = 27;
 
   useEffect(() => {
-    fetch(`https://api.ipinfo.io/lite/${userIp}?token=dd723eefc3969a`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.country_code !== "US") {
-          alert()
-          setPrice({ price: 949, disCountedPrice: 749, currency: "$" });
-        } else {
-          setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
-        }
-      })
-      .catch(() => {
-        // fallback
-        setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
-      });
+    if (userCountry !== "US") {
+      setPrice({ price: 949, disCountedPrice: 749, currency: "$" });
+    } else {
+      setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
+    }
   }, []);
 
   const handleSubmit = async (e) => {
@@ -91,7 +82,8 @@ export default function NeluweHome({userCountry, userIp}) {
         <div className="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-x-3">
             <span className="text-3xl font-bold tracking-tighter">
-              Yuro<span className="text-yellow-400">Design</span> {userCountry} {userIp}
+              Yuro<span className="text-yellow-400">Design</span> {userCountry}{" "}
+              {userIp}
             </span>
           </Link>
 

@@ -7,7 +7,7 @@ export default async function Page() {
   
   // Vercel automatically provides this header
   const userCountry = headerList.get('x-vercel-ip-country') || 'IE';
-  const userIp = headerList.get('x-real-ip');
+  // const userIp = headerList.get('x-real-ip');
 
-  return <NeluweHome userIp={userIp} userCountry={userCountry} />;
+  return <NeluweHome userCountry={userCountry} />;
 }
