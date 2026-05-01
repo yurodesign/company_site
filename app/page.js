@@ -558,7 +558,7 @@ export default function NeluweHome() {
             >
               {isSubmitting
                 ? "Sending..."
-                : "Claim Your Free Homepage Design →"}
+                : "Claim Your Free Design →"}
             </button>
           </form>
         </div>
