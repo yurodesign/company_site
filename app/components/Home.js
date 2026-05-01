@@ -49,7 +49,7 @@ export default function NeluweHome({ userCountry }) {
   const slotsLeft = 27;
 
   useEffect(() => {
-    if (userCountry !== "US") {
+    if (userCountry === "US") {
       setPrice({ price: 949, disCountedPrice: 749, currency: "$" });
     } else {
       setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
@@ -82,8 +82,7 @@ export default function NeluweHome({ userCountry }) {
         <div className="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-x-3">
             <span className="text-3xl font-bold tracking-tighter">
-              Yuro<span className="text-yellow-400">Design</span> {userCountry}{" "}
-              {userIp}
+              Yuro<span className="text-yellow-400">Design</span>
             </span>
           </Link>
 
