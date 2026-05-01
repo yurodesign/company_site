@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import {
   Zap,
@@ -20,6 +20,7 @@ import {
   X,
   Mail,
 } from "lucide-react";
+import { sendEmail } from "@/lib/resend";
 
 const technologies = [
   "React",
@@ -42,28 +43,49 @@ const technologies = [
   "Cloudflare",
 ];
 
-export default function NeluweHome({ userCountry }) {
+const initialForm = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
+
+export default function HomeMain({ countryCode }) {
+  const [form, setForm] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [price, setPrice] = useState({});
   const slotsLeft = 27;
 
   useEffect(() => {
-    if (userCountry === "US") {
+    if (countryCode === "US") {
       setPrice({ price: 949, disCountedPrice: 749, currency: "$" });
     } else {
       setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
     }
   }, []);
 
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setForm((p) => ({
+      ...p,
+      [name]: value,
+    }));
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1600));
-    alert(
-      "✅ Thank you! Your Free Homepage Mockup request has been received.\n\nWe’ll deliver it within 48 hours.",
-    );
-    setIsSubmitting(false);
+    try {
+      await sendEmail({...form, countryCode, price: price?.disCountedPrice });
+      setForm(initialForm);
+      setIsSuccess(true);
+    } catch (err) {
+      console.log({ err });
+    } finally {
+      setIsSubmitting(false);
+    }
     e.target.reset();
     setIsMobileMenuOpen(false);
   };
@@ -215,7 +237,7 @@ export default function NeluweHome({ userCountry }) {
       </section>
 
       {/* WHO WE HELP */}
-      <section id="services" className="py-32 bg-zinc-900">
+      <section className="py-32 bg-zinc-900">
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Who We Help
@@ -394,7 +416,7 @@ export default function NeluweHome({ userCountry }) {
       </div>
 
       {/* VALUE PROPS */}
-      <section className="py-32 bg-zinc-950">
+      <section id="services" className="py-32 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             What We Offer?
@@ -600,27 +622,40 @@ export default function NeluweHome({ userCountry }) {
             <input
               required
               type="text"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
               placeholder="Your name"
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all"
             />
             <input
               required
               type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
               placeholder="Email"
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all"
             />
             <input
               required
               type="tel"
-              placeholder="Contact number"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Contact number (Eg. +353872741779)"
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all"
             />
             <textarea
               required
               rows={5}
               placeholder="Describe your business..."
+              name="message"
+              value={form.message}
+              onChange={handleChange}
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all resize-none"
             />
+              {isSuccess &&<p className="text-center text-green-600">Your request has been sent successfully!</p>}
             <button
               disabled={isSubmitting}
               className="w-full cursor-pointer py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
