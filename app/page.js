@@ -464,7 +464,7 @@ export default function NeluweHome() {
             <input
               required
               type="email"
-              placeholder="Business email"
+              placeholder="Email"
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all"
             />
             <input
