@@ -21,10 +21,24 @@ import {
   Mail,
 } from "lucide-react";
 
+const technologies = [
+  "React",
+  "Next.js",
+  "TailwindCSS",
+  "Netlify",
+  "Vercel",
+  "TypeScript",
+  "Framer Motion",
+  "Node.js",
+  "Cloudflare",
+];
+
 export default function NeluweHome() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const slotsLeft = 27;
+
+  const displayTech = [...technologies, ...technologies];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -483,6 +497,39 @@ export default function NeluweHome() {
         </div>
       </section>
 
+      <section className="bg-zinc-950 py-12 md:py-20 border-b border-gray-800">
+        <div>
+          <div className="max-w-7xl mx-auto px-5 text-center">
+
+           <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Technologies
+          </h2>
+          <p className="text-center text-zinc-400 mb-16">
+            Built with the best modern tools for speed, beauty &amp;
+              performance
+          </p>
+          </div>
+
+          {/* Marquee */}
+          <div className="bg-zinc-900 border border-zinc-800 py-8 md:py-10 overflow-hidden relative">
+            {/* Fade edges */}
+            <div className="absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-zinc-900 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-12 md:w-24 bg-gradient-to-l from-zinc-900 to-transparent z-10 pointer-events-none" />
+
+            {/* Marquee Content */}
+            <div className="flex whitespace-nowrap animate-marquee hover:animation-pause">
+              {[...displayTech, ...displayTech].map((tech, index) => (
+                <div key={index} className="flex items-center px-8 md:px-14">
+                  <span className="text-xl md:text-2xl font-semibold text-zinc-300 hover:text-yellow-400 transition-colors">
+                    {tech}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section id="contact" className="py-20 md:py-32 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-5 md:px-6 grid md:grid-cols-2 gap-12 md:gap-20">
@@ -556,9 +603,7 @@ export default function NeluweHome() {
               disabled={isSubmitting}
               className="w-full cursor-pointer py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              {isSubmitting
-                ? "Sending..."
-                : "Claim Your Free Design →"}
+              {isSubmitting ? "Sending..." : "Claim Your Free Design →"}
             </button>
           </form>
         </div>
