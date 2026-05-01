@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   Zap,
@@ -16,9 +16,9 @@ import {
   Wrench,
   Dumbbell,
   Phone,
-  ChevronRight,
   Menu,
   X,
+  Mail,
 } from "lucide-react";
 
 export default function NeluweHome() {
@@ -31,7 +31,7 @@ export default function NeluweHome() {
     setIsSubmitting(true);
     await new Promise((resolve) => setTimeout(resolve, 1600));
     alert(
-      "✅ Thank you! Your Free Homepage Mockup request has been received.\n\nWe'll deliver it within 48 hours.",
+      "✅ Thank you! Your Free Homepage Mockup request has been received.\n\nWe’ll deliver it within 48 hours.",
     );
     setIsSubmitting(false);
     e.target.reset();
@@ -90,7 +90,7 @@ export default function NeluweHome() {
             href="#contact"
             className="hidden md:block px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-zinc-950 font-semibold rounded-full transition-all"
           >
-            Claim Free Mockup
+            Claim Free Design
           </Link>
 
           {/* Mobile Menu Button */}
@@ -159,9 +159,10 @@ export default function NeluweHome() {
           </h1>
 
           <p className="text-lg md:text-xl lg:text-2xl text-zinc-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-            We build high-performance websites for SMBs. We design your custom
-            homepage <span className="text-white">for FREE</span>. Love it? Pay
-            only €599 after the full site is live.
+            We build websites for SMBs and self-employed professionals. We
+            design your homepage for
+            <span className="text-white font-semibold"> FREE</span>. Love it?
+            We’ll build the rest for €599.
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
@@ -169,7 +170,7 @@ export default function NeluweHome() {
               href="#contact"
               className="px-10 py-6 md:py-7 bg-yellow-400 hover:bg-yellow-300 text-zinc-950 font-semibold text-xl md:text-2xl rounded-3xl transition-all hover:scale-105 w-full md:w-auto"
             >
-              Claim My Free Homepage Mockup →
+              Claim Your Free Homepage Design →
             </Link>
 
             <div className="text-left mt-4 md:mt-0">
@@ -191,31 +192,62 @@ export default function NeluweHome() {
             Who We Help
           </h2>
           <p className="text-center text-zinc-400 mb-16 max-w-2xl mx-auto">
-            Tailored websites for ambitious small businesses and self-employed
-            professionals
+            Custom websites for small and medium-sized businesses and
+            self-employed professionals
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "Restaurants & Cafés", icon: UtensilsCrossed },
-              { title: "Barbers & Salons", icon: Scissors },
-              { title: "Local Shops & Boutiques", icon: ShoppingBag },
-              { title: "Tradies & Service Pros", icon: Wrench },
-              { title: "Fitness & Wellness", icon: Dumbbell },
-              { title: "Consultants & Coaches", icon: Briefcase },
-              { title: "Real Estate Agents", icon: Home },
-              { title: "Self-Employed Professionals", icon: User },
+              {
+                title: "Restaurants & Cafés",
+                icon: UtensilsCrossed,
+                desc: "Menus, bookings & delivery",
+              },
+              {
+                title: "Barbers & Salons",
+                icon: Scissors,
+                desc: "Online booking & portfolios",
+              },
+              {
+                title: "Local Shops & Boutiques",
+                icon: ShoppingBag,
+                desc: "Showcase products & sell online",
+              },
+              {
+                title: "Tradies & Service Pros",
+                icon: Wrench,
+                desc: "Get more local leads",
+              },
+              {
+                title: "Fitness & Wellness",
+                icon: Dumbbell,
+                desc: "Class schedules & memberships",
+              },
+              {
+                title: "Consultants & Coaches",
+                icon: Briefcase,
+                desc: "Build credibility & book clients",
+              },
+              {
+                title: "Real Estate Agents",
+                icon: Home,
+                desc: "Property listings & contact forms",
+              },
+              {
+                title: "Self-Employed Professionals",
+                icon: User,
+                desc: "Professional portfolio sites",
+              },
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-zinc-950 border border-zinc-800 hover:border-yellow-400 p-6 md:p-8 rounded-3xl text-center transition-all hover:scale-105 group"
+                className="bg-zinc-950 border border-zinc-800 hover:border-yellow-400 p-8 rounded-3xl transition-all hover:-translate-y-2 group"
               >
-                <div className="w-14 h-14 md:w-16 md:h-16 mx-auto bg-zinc-900 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-8 h-8 md:w-9 md:h-9 text-yellow-400" />
+                <div className="w-16 h-16 bg-zinc-900 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-yellow-400 transition-colors">
+                  <item.icon className="w-9 h-9 text-yellow-400 group-hover:text-zinc-950 transition-colors" />
                 </div>
-                <h4 className="font-semibold text-lg md:text-xl">
-                  {item.title}
-                </h4>
+                <h4 className="font-semibold text-xl mb-2">{item.title}</h4>
+                {/* <p className="text-zinc-500 text-sm">{item.desc}</p> */}
               </div>
             ))}
           </div>
@@ -229,7 +261,7 @@ export default function NeluweHome() {
             The "Zero-Risk" Roadmap
           </h2>
           <p className="text-center text-zinc-400 mb-16">
-            We prove our value before you sign anything.
+            See your website before spending a cent.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
@@ -254,7 +286,11 @@ export default function NeluweHome() {
                 title: "Build & Launch",
                 desc: "Full site live in 7 days",
               },
-              { step: "05", title: "Pay €599", desc: "Only after you love it" },
+              {
+                step: "05",
+                title: "Pay €599",
+                desc: "After you approve everything",
+              },
             ].map((item) => (
               <div
                 key={item.step}
@@ -339,22 +375,22 @@ export default function NeluweHome() {
               {
                 icon: Zap,
                 title: "Blazing Fast",
-                desc: "High performance architecture",
+                desc: "Optimized for speed and performance",
               },
               {
                 icon: Palette,
                 title: "Custom Design",
-                desc: "Unique & elegant for your brand",
+                desc: "Unique to your brand. Zero templates",
               },
               {
                 icon: KeyRound,
                 title: "You Own Everything",
-                desc: "Full source code + no subscriptions",
+                desc: "Full source code. No recurring fees",
               },
               {
                 icon: CheckCircle,
-                title: "Perfect SEO",
-                desc: "Lighthouse HIGH scores",
+                title: "SEO Optimized",
+                desc: "Built for top search rankings",
               },
             ].map((item) => (
               <div key={item.title} className="text-center group">
@@ -374,59 +410,75 @@ export default function NeluweHome() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="py-20 md:py-24 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-5 md:px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+      <section id="pricing" className="py-20 bg-zinc-900">
+        <div className="max-w-7xl mx-auto px-5 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight text-white">
             Founder’s Special Launch Offer
           </h2>
-          <p className="text-yellow-400 text-xl md:text-2xl mb-12">
-            First 50 clients only • Regular price €799
+          <p className="text-yellow-400 text-xl md:text-2xl font-medium mb-12">
+            Limited to the first 50 clients • Save €200 Today
           </p>
 
-          <div className="relative max-w-lg mx-auto bg-zinc-900 border-2 border-yellow-400 rounded-3xl p-8 md:p-12">
-            {/* Percentage Badge */}
-            <div className="absolute -top-1.5 -right-6 bg-red-500 text-white text-sm font-bold px-6 py-1.5 rounded-full rotate-20 shadow-lg">
+          <div className="relative max-w-lg mx-auto bg-zinc-900 border-2 border-yellow-400 rounded-3xl p-8 md:p-12 shadow-2xl">
+            {/* Badge */}
+            <div className="absolute -top-4 -right-4 bg-red-600 text-white text-sm font-bold px-6 py-2 rounded-full rotate-12 shadow-xl border-2 border-zinc-900">
               25% OFF
             </div>
-            <div className="text-6xl md:text-7xl font-bold text-white">
-              €599{" "}
-              <span className="text-2xl text-zinc-600 line-through font-medium">
-                €799
+
+            <div className="flex items-baseline justify-center gap-3">
+              <span className="text-6xl md:text-7xl font-bold text-white">
+                €599
               </span>
+              <span className="text-2xl text-zinc-500 line-through">€799</span>
             </div>
-            <p className="text-zinc-400">
-              one-time payment • Full 5-page website
+
+            <p className="text-zinc-400 mt-2">
+              One-time payment • Full 4-page website
             </p>
 
-            <ul className="mt-10 md:mt-12 space-y-4 text-left text-zinc-300 text-sm md:text-base">
+            <ul className="mt-10 space-y-4 text-left text-zinc-300">
               {[
-                "Free homepage mockup",
-                "Complete 5-page site",
-                "1 year free domain ",
-                "Free hosting",
-                "Mobile responsive design",
-                "Contact form",
-                "SEO",
-                "No monthly maintenance fee",
-                "Full code ownership",
-                "Pay only after launch",
+                "Free homepage design (Pay only if you love it)",
+                "Up to 4 pages (Eg. Home, About, Services, Contact)",
+                "1 year free domain",
+                "Free website hosting",
+                "Fully Mobile-Responsive Design",
+                "Integrated Contact Forms",
+                "On-Page SEO Optimization",
+                "No monthly fees or hidden costs",
+                "You own 100% of the website code",
+                "Pay nothing until the site is ready",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <CheckCircle className="text-yellow-400" /> {item}
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle
+                    className="text-yellow-400 shrink-0 mt-1"
+                    size={18}
+                  />
+                  <span className="text-sm md:text-base">{item}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-xs text-zinc-500 text-left">
-              <strong>Maintenance:</strong> No monthly fees. Need an update, new
-              page, or changes? We’ll do it on a simple pay-as-you-go basis.
-            </p>
+
+            <div className="mt-8 p-5 bg-zinc-800/40 rounded-2xl border border-zinc-800">
+              <p className="text-xs text-zinc-400 text-left leading-relaxed">
+                <strong className="text-zinc-200 text-sm block mb-1">
+                  No Subscriptions
+                </strong>
+                We don’t charge monthly fees. If you need changes later, just
+                pay for what you need. Simple.
+              </p>
+            </div>
 
             <Link
               href="#contact"
-              className="mt-12 md:mt-14 block w-full py-6 bg-yellow-400 text-zinc-950 font-semibold text-xl md:text-2xl rounded-3xl hover:bg-yellow-300 transition-all"
+              className="mt-10 block w-full py-5 bg-yellow-400 text-zinc-950 font-bold text-xl rounded-2xl hover:bg-yellow-300 transition-all"
             >
               Secure My Slot
             </Link>
+
+            <p className="mt-4 text-zinc-500 text-sm">
+              No upfront payment needed
+            </p>
           </div>
         </div>
       </section>
@@ -436,18 +488,39 @@ export default function NeluweHome() {
         <div className="max-w-7xl mx-auto px-5 md:px-6 grid md:grid-cols-2 gap-12 md:gap-20">
           <div>
             <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-tight mb-8">
-              Ready to <br /> launch?
+              Ready to <br /> See Your Website?
             </h2>
             <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-12">
-              Get your free custom homepage mockup in 48 hours. No payment, no
+              Get your free homepage design in 48 hours. No payment. No
               obligation.
             </p>
+            {/* Contact Info */}
+            <div className="space-y-6">
+              <a
+                href="tel:+353872741779"
+                className="flex items-center gap-4 text-white font-medium hover:text-yellow-400 transition-colors group"
+              >
+                <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Whatsapp / Call us</p>
+                  <p>+353 87 274 1779</p>
+                </div>
+              </a>
 
-            <div className="flex items-center gap-4 text-white font-bold">
-              <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center text-yellow-400">
-                <Phone />
-              </div>
-              +353 87 274 1779
+              <a
+                href="mailto:hello@yurodesign.com"
+                className="flex items-center gap-4 text-white font-medium hover:text-yellow-400 transition-colors group"
+              >
+                <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
+                  <Mail size={24} />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Email us</p>
+                  <p>hello@yurodesign.com</p>
+                </div>
+              </a>
             </div>
           </div>
 
@@ -481,10 +554,11 @@ export default function NeluweHome() {
             />
             <button
               disabled={isSubmitting}
-              className="w-full py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+              className="w-full cursor-pointer py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              {isSubmitting ? "Sending..." : "Claim My Free Mockup"}
-              {!isSubmitting && <ChevronRight size={22} />}
+              {isSubmitting
+                ? "Sending..."
+                : "Claim Your Free Homepage Design →"}
             </button>
           </form>
         </div>
@@ -501,7 +575,7 @@ export default function NeluweHome() {
           </span>
         </div>
         <p className="text-zinc-500">
-          © 2026 Neluwe • Professional Websites for Europe &amp; USA
+          © 2026 YuroDesign • Professional Websites for Europe &amp; USA
         </p>
         <p className="text-xs text-zinc-600 mt-3">
           One-time payment • Full ownership • No monthly fees
