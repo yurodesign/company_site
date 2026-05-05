@@ -588,7 +588,7 @@ export default function HomeMain({ countryCode }) {
             {/* Contact Info */}
             <div className="space-y-6">
               <a
-                href="tel:+353872741779"
+                href="tel:+353857757871"
                 className="flex items-center gap-4 text-white font-medium hover:text-yellow-400 transition-colors group"
               >
                 <div className="w-12 h-12 bg-zinc-900 rounded-2xl flex items-center justify-center text-yellow-400 group-hover:scale-110 transition-transform">
@@ -596,7 +596,7 @@ export default function HomeMain({ countryCode }) {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500">Whatsapp / Call us</p>
-                  <p>+353 87 274 1779</p>
+                  <p>+353 85 775 7871</p>
                 </div>
               </a>
 
@@ -643,7 +643,7 @@ export default function HomeMain({ countryCode }) {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              placeholder="Contact number (Eg. +353872741779)"
+              placeholder="Contact number (Eg. +353857757871)"
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all"
             />
             <textarea
@@ -677,7 +677,7 @@ export default function HomeMain({ countryCode }) {
           </span>
         </div>
         <p className="text-zinc-500">
-          © 2026 YuroDesign • Professional Websites for Europe &amp; USA
+          2026 YuroDesign • Professional Websites for Europe &amp; USA
         </p>
         <p className="text-xs text-zinc-600 mt-3">
           One-time payment • Full ownership • No monthly fees
