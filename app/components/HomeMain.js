@@ -19,6 +19,7 @@ import {
   Menu,
   X,
   Mail,
+  ChevronDown,
 } from "lucide-react";
 import { sendEmail } from "@/lib/resend";
 
@@ -50,12 +51,60 @@ const initialForm = {
   message: "",
 };
 
+const faqs = [
+  {
+    q: "Is the homepage actually free?",
+    a: "We design the homepage first for free so you can see our work and 'try before you buy.' However, we do not give away free websites. If you are satisfied with the design and want the full site, you then proceed with the paid project."
+  },
+  {
+    q: "When do I have to pay?",
+    a: "You don't pay anything upfront. We design your homepage first to prove our value. Once you are happy with the direction, we build the rest of the site, and you only pay once the full website is launched."
+  },
+  {
+    q: "What if I don't like the homepage design?",
+    a: "No hard feelings! If the design isn't a fit for your business, you can walk away with zero cost and zero obligation."
+  },
+  {
+    q: "Do you use templates like WordPress or Wix?",
+    a: "No. We build everything from scratch specifically for your brand. This ensures your site is faster, more secure, and unique to your business."
+  },
+  {
+    q: "How long does the process take?",
+    a: "You'll see your custom homepage design within 48 hours. The full website (up to 5 pages) is typically delivered within 7 days after you approve the initial design."
+  },
+  {
+    q: "Is the price really a one-time fee?",
+    a: "Yes. One single payment for the build. We have no monthly fees, no subscriptions, and no hidden costs."
+  },
+  {
+    q: "Do you build e-commerce websites?",
+    a: "Yes. We can integrate online stores, booking systems, or payment gateways. These advanced features are available for an additional custom charge."
+  },
+  {
+    q: "Will my website be mobile-friendly?",
+    a: "Absolutely. Every site we build is fully responsive and looks great on phones, tablets, and desktops."
+  },
+  {
+    q: "Is hosting free?",
+    a: "Yes. We host your website on high-performance platforms like Vercel and Netlify at no extra cost to you."
+  },
+  {
+    q: "Do I get the source code?",
+    a: "Yes. You own 100% of the code and assets. If you ever want to move your site elsewhere, you are free to do so."
+  },
+  {
+    q: "How do you handle maintenance?",
+    a: "We don’t charge monthly maintenance fees. If you need changes or updates in the future, you just pay for what you need, when you need it."
+  }
+];
+
 export default function HomeMain({ countryCode }) {
   const [form, setForm] = useState(initialForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [price, setPrice] = useState({});
+  const [openFaq, setOpenFaq] = useState(null);
   const slotsLeft = 27;
 
   useEffect(() => {
@@ -65,6 +114,10 @@ export default function HomeMain({ countryCode }) {
       setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
     }
   }, []);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -78,7 +131,7 @@ export default function HomeMain({ countryCode }) {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await sendEmail({...form, countryCode, price: price?.disCountedPrice });
+      await sendEmail({ ...form, countryCode, price: price?.disCountedPrice });
       setForm(initialForm);
       setIsSuccess(true);
     } catch (err) {
@@ -324,7 +377,7 @@ export default function HomeMain({ countryCode }) {
               },
               {
                 step: "02",
-                title: "Free Mockup",
+                title: "Free Design",
                 desc: "Your homepage design in 48 hours",
               },
               {
@@ -498,7 +551,7 @@ export default function HomeMain({ countryCode }) {
             <ul className="mt-10 space-y-4 text-left text-zinc-300">
               {[
                 "Free homepage design (Pay only if you love it)",
-                "Up to 4 pages (Eg. Home, About, Services, Contact)",
+                "Up to 5 pages (Eg. Home, About, Services, etc.)",
                 "1 year free domain",
                 "Free website hosting",
                 "Fully Mobile-Responsive Design",
@@ -571,6 +624,53 @@ export default function HomeMain({ countryCode }) {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* === FAQ SECTION === */}
+      <section className="py-28 bg-zinc-900">
+        <div className="max-w-4xl mx-auto px-5 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-zinc-400 text-lg">
+              Everything you need to know before getting started
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-zinc-950 border border-zinc-800 rounded-3xl overflow-hidden transition-all"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-zinc-900 transition-colors"
+                >
+                  <span className="font-medium text-lg pr-6">{faq.q}</span>
+                  <ChevronDown
+                    className={`w-6 h-6 text-yellow-400 transition-transform duration-300 ${
+                      openFaq === index ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  className={`px-8 overflow-hidden transition-all duration-300 ${
+                    openFaq === index ? "max-h-48 pb-6" : "max-h-0"
+                  }`}
+                >
+                  <p className="text-zinc-400 leading-relaxed">{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-zinc-500 mt-12 text-sm">
+            Still have questions? Feel free to reach out!
+          </p>
         </div>
       </section>
 
@@ -655,7 +755,11 @@ export default function HomeMain({ countryCode }) {
               onChange={handleChange}
               className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl px-6 py-5 focus:border-yellow-400 outline-none transition-all resize-none"
             />
-              {isSuccess &&<p className="text-center text-green-600">Your request has been sent successfully!</p>}
+            {isSuccess && (
+              <p className="text-center text-green-600">
+                Your request has been sent successfully!
+              </p>
+            )}
             <button
               disabled={isSubmitting}
               className="w-full cursor-pointer py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
