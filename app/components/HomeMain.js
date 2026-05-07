@@ -105,7 +105,7 @@ export default function HomeMain({ countryCode }) {
   const [isSuccess, setIsSuccess] = useState(false);
   const [price, setPrice] = useState({});
   const [openFaq, setOpenFaq] = useState(null);
-  const slotsLeft = 27;
+  const slotsLeft = 7;
 
   useEffect(() => {
     if (countryCode === "US") {
@@ -180,6 +180,12 @@ export default function HomeMain({ countryCode }) {
               className="hover:text-yellow-400 transition-colors"
             >
               Pricing
+            </Link>
+            <Link
+              href="#FAQ"
+              className="hover:text-yellow-400 transition-colors"
+            >
+              FAQ
             </Link>
             <Link
               href="#contact"
@@ -628,7 +634,7 @@ export default function HomeMain({ countryCode }) {
       </section>
 
       {/* === FAQ SECTION === */}
-      <section className="py-28 bg-zinc-900">
+      <section className="py-28 bg-zinc-900" id="FAQ">
         <div className="max-w-4xl mx-auto px-5 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
