@@ -109,9 +109,9 @@ export default function HomeMain({ countryCode }) {
 
   useEffect(() => {
     if (countryCode === "US") {
-      setPrice({ price: 949, disCountedPrice: 749, currency: "$" });
+      setPrice({ price: 899, disCountedPrice: 599, currency: "$" });
     } else {
-      setPrice({ price: 799, disCountedPrice: 599, currency: "€" });
+      setPrice({ price: 799, disCountedPrice: 499, currency: "€" });
     }
   }, []);
 
@@ -149,7 +149,7 @@ export default function HomeMain({ countryCode }) {
       <div className="bg-yellow-400 text-zinc-950 py-3 text-center font-bold text-sm tracking-widest relative overflow-hidden">
         <div className="absolute inset-0 from-transparent via-white/30 to-transparent animate-shimmer" />
         🔥 ONLY {slotsLeft} FOUNDER SLOTS REMAINING AT {price?.currency}
-        {price?.disCountedPrice} — 25% OFF
+        {price?.disCountedPrice} — 37% OFF
       </div>
 
       {/* Navbar */}
@@ -199,7 +199,7 @@ export default function HomeMain({ countryCode }) {
             href="#contact"
             className="hidden md:block px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-zinc-950 font-semibold rounded-full transition-all"
           >
-            Claim Free Design
+            Claim Free Home Page
           </Link>
 
           {/* Mobile Menu Button */}
@@ -280,7 +280,7 @@ export default function HomeMain({ countryCode }) {
               href="#contact"
               className="px-10 py-6 md:py-7 bg-yellow-400 hover:bg-yellow-300 text-zinc-950 font-semibold text-xl md:text-2xl rounded-3xl transition-all hover:scale-105 w-full md:w-auto"
             >
-              Claim Your Free Homepage Design →
+              Claim Your Free Homepage →
             </Link>
 
             <div className="text-left mt-4 md:mt-0">
@@ -450,7 +450,7 @@ export default function HomeMain({ countryCode }) {
 
               <div className="text-center">
                 <div className="bg-red-500 text-white text-xs font-bold px-4 py-1 rounded-full -rotate-6">
-                  25% OFF
+                  37% OFF
                 </div>
                 <div className="text-[10px] uppercase font-bold tracking-widest mt-1 text-yellow-400">
                   ONE-TIME
@@ -530,13 +530,13 @@ export default function HomeMain({ countryCode }) {
             Founder’s Special Launch Offer
           </h2>
           <p className="text-yellow-400 text-xl md:text-2xl font-medium mb-12">
-            Limited to the first 50 clients • Save {price?.currency}200 Today
+            Limited Time Offer • Save {price?.currency}300 Today
           </p>
 
           <div className="relative max-w-lg mx-auto bg-zinc-900 border-2 border-yellow-400 rounded-3xl p-8 md:p-12 shadow-2xl">
             {/* Badge */}
             <div className="absolute -top-4 -right-4 bg-red-600 text-white text-sm font-bold px-6 py-2 rounded-full rotate-12 shadow-xl border-2 border-zinc-900">
-              25% OFF
+              37% OFF
             </div>
 
             <div className="flex items-baseline justify-center gap-3">
@@ -551,7 +551,7 @@ export default function HomeMain({ countryCode }) {
             </div>
 
             <p className="text-zinc-400 mt-2">
-              One-time payment • Full 4-page website
+              One-time payment • Full 5-page website
             </p>
 
             <ul className="mt-10 space-y-4 text-left text-zinc-300">
@@ -770,7 +770,7 @@ export default function HomeMain({ countryCode }) {
               disabled={isSubmitting}
               className="w-full cursor-pointer py-6 bg-yellow-400 text-zinc-950 font-black text-xl rounded-2xl hover:bg-yellow-300 transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
-              {isSubmitting ? "Sending..." : "Claim Your Free Design →"}
+              {isSubmitting ? "Sending..." : "Claim Your Free Home Page →"}
             </button>
           </form>
         </div>
